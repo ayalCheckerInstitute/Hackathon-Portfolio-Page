@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Blogs{% endblock %}
+
+{% block content %}
+{% for blog in all_blogs %}
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="{{ blog.img }}" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">{{ blog.name }}</h5>
+            <p class="card-text">{{ blog.description }}</p>
+            <a href="{{url_for('ind_blog', blog_id=blog.id)}}" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>
+{% endfor %}
+<form method="post" action="" enctype="multipart/form-data">
+    <h2>Sign up for one of the blogs by filling out your info below!</h2>
+    {{blog_form.hidden_tag()}}
+
+    {{ blog_form.name.label }}
+    {{ blog_form.name() }}
+
+    {{ blog_form.email.label }}
+    {{ blog_form.email() }}
+    
+    {{ blog_form.blog.label }}
+    {{ blog_form.blog() }}
+
+    {{ blog_form.submit() }}
+    
+</form>
+{% endblock content %}
