@@ -1,11 +1,16 @@
 from portfolio import portfolio, app
-from flask import render_template, redirect, url_for, flash
+from flask import render_template, redirect, url_for, flash, send_file
 from portfolio.forms import BlogSignUpForm, MessageForm, CreateOrRemoveBlogForm, CreateOrRemoveProjectForm
 from portfolio.models import User, Message, Blog, Projects
 
 @app.route('/')
 def landing_page():
     return render_template('landing_page.html')
+
+@app.route('/download')
+def download():
+    path = 'C:/Users/Lenovo/Desktop/Personal-Projects/Hackathon-Portfolio-Page/portfolio/static/resume.pdf'
+    return send_file(path, as_attachment=True)
 
 @app.route('/about')
 def about():
