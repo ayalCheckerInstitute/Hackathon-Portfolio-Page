@@ -79,6 +79,13 @@ def contact():
 def contact_confirmation():
     return render_template('contact_confirmation.html')
 
+@app.route('/delete_message/<message_id>')
+def delete_message(message_id):
+    message = Message.query.filter_by(id=message_id).first()
+    portfolio.session.delete(message)
+    portfolio.session.commit()
+    return redirect(url_for('admin'))
+
 
 @app.route('/admin', methods=('GET', 'POST'))
 def admin():

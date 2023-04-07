@@ -73,6 +73,9 @@
                         <li>{{ message.text }}</li>
                     </ul>
                 </li>
+                <li>
+                    <a href="{{url_for('delete_message', message_id=message.id)}}" class="btn btn-primary">Click here to delete this message</a>
+                </li>
             {% endfor %}
         </ul>
         
