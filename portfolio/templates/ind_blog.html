@@ -3,4 +3,18 @@
     {{ blog.img }}<br><br>
     {{ blog.name }}<br><br>
     {{ blog.description }}
+
+    <form method="post" action="" enctype="multipart/form-data">
+        <h2>Sign up for this blog by filling out your info below!</h2>
+        {{blog_form.hidden_tag()}}
+    
+        {{ blog_form.name.label }}
+        {{ blog_form.name() }}
+    
+        {{ blog_form.email.label }}
+        {{ blog_form.email() }}
+    
+        {{ blog_form.submit() }}
+        
+    </form>
 {% endblock content %}

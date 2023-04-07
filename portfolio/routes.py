@@ -42,7 +42,19 @@ def blogs():
 @app.route('/blog/<int:blog_id>')
 def ind_blog(blog_id):
     blog = Blog.query.filter_by(id=blog_id).first()
-    return render_template('ind_blog.html', blog=blog)
+    blog_form = BlogSignUpForm()
+    user = User.query.filter_by(email=blog_form.email.data).first()
+    if blog_form.validate_on_submit():
+        if user:
+            user.blogs.append(blog)
+            portfolio.session.commit()
+        else:
+            user = User(name=blog_form.name.data, email=blog_form.email.data)
+            user.blogs.append(blog)
+            user.save_user()
+        flash(f"You've been signed up for the {blog.name} blog!")
+        redirect(url_for('blogs'))
+    return render_template('ind_blog.html', blog=blog, blog_form=blog_form)
 
 
 @app.route('/contact', methods=('GET', 'POST'))
