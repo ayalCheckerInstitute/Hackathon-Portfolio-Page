@@ -1,8 +1,14 @@
 {% extends 'base.html' %}
+{% block title %}{{ blog.name }}{% endblock title %}
 {% block content %}
     {{ blog.img }}<br><br>
     {{ blog.name }}<br><br>
-    {{ blog.description }}
+    {{ blog.description }}<br><br>
+    {% for post in posts %}
+        <h3>Subject: {{ post.subject }}</h3>
+        <p>{{ post.content }}</p>
+    {% endfor %}
+
 
     <form method="post" action="" enctype="multipart/form-data">
         <h2>Sign up for this blog by filling out your info below!</h2>
