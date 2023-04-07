@@ -33,3 +33,9 @@ class CreateOrRemoveProjectForm(FlaskForm):
     url         = StringField('Url', validators=[DataRequired()])
     action      = SelectField('Action', choices=['Create', 'Remove'])
     submit      = SubmitField('Submit')
+
+class EmailForm(FlaskForm):
+    subject = StringField('Subject')
+    body    = StringField('Body')
+    blog    = SelectField('Blog', choices=[blog.name for blog in list_of_blogs])
+    submit  = SubmitField('Submit')
